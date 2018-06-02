@@ -1,10 +1,10 @@
-const rowHeight = 75;
-const colWidth = 100;
+const rowHeight = 83;
+const colWidth = 101;
 
 // Enemies our player must avoid
 var Enemy = function (row) {
     this.x = 0;
-    this.y = row * rowHeight;
+    this.y = row * rowHeight - 20;
     this.speed = Math.random();
 
     // The image/sprite for our enemies, this uses
@@ -28,10 +28,10 @@ Enemy.prototype.render = function () {
 // a handleInput() method.
 
 var Player = function () {
-    this.col = 3;
-    this.row = 4;
-    this.x = colWidth * this.col;
-    this.y = rowHeight * this.row;
+    this.col = 2;
+    this.row = 5;
+    this.x = colWidth * this.col - 40;
+    this.y = rowHeight * this.row - 10;
     this.sprite = 'images/char-cat-girl.png';
 };
 
@@ -39,7 +39,7 @@ var Player = function () {
 // Parameter: dt, a time delta between ticks
 Player.prototype.update = function (dt) {
     this.x = colWidth * this.col;
-    this.y = rowHeight * this.row;
+    this.y = rowHeight * this.row - 10;
 
 };
 
@@ -52,20 +52,26 @@ Player.prototype.render = function () {
 Player.prototype.handleInput = function (key) {
     switch (key) {
         case 'left':
-            this.col -= 1
+            if (this.col > 0) {
+                this.col -= 1
+            }
             break;
         case 'right':
-            this.col += 1;
+            if (this.col < 4) {
+                this.col += 1;
+            }
             break;
         case 'up':
-            this.row -= 1;
+            if (this.row > 0) {
+                this.row -= 1;
+            }
             break;
         case 'down':
-            this.row += 1;
+            if (this.row < 5)
+                this.row += 1;
             break;
     }
 };
-
 
 
 var player = new Player();
