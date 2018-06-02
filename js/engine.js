@@ -79,7 +79,22 @@ var Engine = (function (global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+
+        if (checkCollisions()) {
+            player.lostLive();
+        }
+
+        function checkCollisions() {
+            let result = false;
+            for (let index = 0; index < allEnemies.length; index++) {
+                const element = allEnemies[index];
+                if (element.col == player.col && element.row == player.row) {
+                    result = true;
+                    break;
+                }
+            }
+            return result;
+        }
     }
 
     /* This is called by the update function and loops through all of the

@@ -1,9 +1,11 @@
-const rowHeight = 83;
-const colWidth = 101;
+const rowHeight = 82;
+const colWidth = 100;
 
 // Enemies our player must avoid
 var Enemy = function (row) {
-    this.x = 0;
+    this.row = row;
+    this.col = 0;
+    this.x = -100;
     this.y = row * rowHeight - 20;
     this.speed = Math.random();
 
@@ -16,6 +18,18 @@ var Enemy = function (row) {
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function (dt) {
     this.x += dt * 100 * this.speed;
+    // FIXME: The col property is wrong
+    if (this.x < 0) {
+        this.col = 0;
+    } else {
+        this.col = Math.trunc((this.x) / colWidth);
+    }
+    document.querySelector('#col').textContent = this.col;
+    if (this.col > 5) {
+        this.col = 0;
+        this.x = -100;
+        this.speed = Math.random();
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -30,10 +44,27 @@ Enemy.prototype.render = function () {
 var Player = function () {
     this.col = 2;
     this.row = 5;
-    this.x = colWidth * this.col - 40;
-    this.y = rowHeight * this.row - 10;
+    this.x = 0;
+    this.y = 0;
     this.sprite = 'images/char-cat-girl.png';
+    this.lives = 3;
 };
+
+// Object.defineProperty(Player.prototype, 'col', {
+//     get: () => this.col,
+//     set: col => {
+//         this.col = col;
+//         this.x = colWidth * this.col - 40;
+//     }
+// });
+
+// Object.defineProperty(Player.prototype, 'row', {
+//     get: () => this.row,
+//     set: row => {
+//         this.row = row;
+//         this.x = colWidth * row - 40;
+//     }
+// });
 
 // Update the player's position
 // Parameter: dt, a time delta between ticks
@@ -73,17 +104,22 @@ Player.prototype.handleInput = function (key) {
     }
 };
 
+Player.prototype.lostLive = function () {
+    this.col = 2;
+    this.row = 5;
+    this.lives -= 1;
+};
 
 var player = new Player();
 
+
 var allEnemies = [
-    new Enemy(1),
-    new Enemy(2),
-    new Enemy(3),
-    new Enemy(3),
+    // new Enemy(1),
+    // new Enemy(2),
+    // new Enemy(3),
+    // new Enemy(2),
     new Enemy(1)
 ];
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
