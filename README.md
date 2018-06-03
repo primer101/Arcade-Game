@@ -1,6 +1,62 @@
-frontend-nanodegree-arcade-game
-===============================
+# Arcade Game Project
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+A arcade game  made with vanilla JavaScript. This is a project from Front-End Web Developer Nanodegree Program of Udacity and part of the scholarship Grow With Google.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+![Game](https://github.com/primer101/Arcade-Game/raw/master/img-src/arcade game.png)
+
+### Features
+
+- A score the increments in 10s.
+- 3 Lives.
+- HTML5 Audio effects.
+- A button to restart the game
+- A congrats pop-up window that shows up at the end of the game with the statistics of the game.
+- Automatic caching of the images for improved performance.
+
+### Browser Compatibility
+
+Tested in the following browsers/versions:
+
+- Google Chrome 66.0+
+- Firefox 60.0+
+- Opera 53.0+
+- Microsoft Edge 42.0+
+
+Tested in mobile but it is no responsive and only works with a physical keyboard.
+
+### Quick Start
+
+Several options to get up and running:
+
+- Clone the repo: `git clone https://github.com/goldfire/howler.js.git`
+- Live Demo in [Arcade Game](http://ldaudinot.atwebpages.com/arcade)
+
+## Instructions
+
+The goal is to cross the tracks and reach the water before of the bugs catch you. The game is finished when the bugs catch you 3 times.
+
+1. Use the directions keys to move the avatar to the water.
+2. Avoid the evil bugs.
+3. Change the avatar using the options on the left.
+
+## Contributing
+
+This repository is part of an Udacity course project. Therefore, we most likely will not accept pull requests.
+
+## Disclaimer
+
+The game was made from a starter code by [Richard Kalehoff](https://github.com/richardkalehoff) and others from Udacity.
+
+This game uses these sounds from [Freedsound]( http://freesound.org):
+
+[win 01](https://freesound.org/people/rhodesmas/sounds/320672/) by [rhodesmas](https://freesound.org/people/rhodesmas/ )
+
+[lostItem.mp3](https://freesound.org/people/Kastenfrosch/sounds/162465/), by [Kastenfrosch](https://freesound.org/people/Kastenfrosch/ )
+
+[Clap10.wav](https://freesound.org/people/HerbertBoland/sounds/28223/#) , by [HerbertBoland](https://freesound.org/people/HerbertBoland/)
+
+Nanodegree" is a registered trademark of Udacity. © 2011–2018 [Udacity, Inc.](https://www.udacity.com/) 
+
+Copyright (c) 2018 [Leonardo Daudinot](https://www.linkedin.com/in/leonardodaudinot/) and [Udacity, Inc](https://www.udacity.com/)
+
+Released under the [MIT License](LICENSE.txt) and the [Terms of Service](https://help.github.com/articles/github-terms-of-service) of GitHub.

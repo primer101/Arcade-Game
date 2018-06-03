@@ -2,6 +2,13 @@ body {
     text-align: center;
 }
 
+.main {
+    display: flex;
+    align-items: center;
+}
+
+/* score board */
+
 .score-board {
     display: flex;
     border: solid Blue 4px;
@@ -10,13 +17,14 @@ body {
     width: 505px;
     align-items: center;
     justify-content: space-between;
-    margin: 30px auto -40px auto;
+    margin: 30px auto -20px auto;
 }
 
 .score-text {
     font-size: 1.8rem;
     font-weight: bold;
     padding: 0px 20px;
+    width: 3.5rem;
 }
 
 .hearts-box {
@@ -27,6 +35,80 @@ body {
     height: 25%;
     width: 25%;
 }
+
+/* Game */
+
+.char-boy {
+    background-image: url(../images/char-boy.png);
+}
+
+.char-cat-girl {
+    background-image: url(../images/char-cat-girl.png);
+}
+
+.char-horn-girl {
+    background-image: url(../images/char-horn-girl.png);
+}
+
+.char-pink-girl {
+    background-image: url(../images/char-pink-girl.png);
+}
+
+.char-princess-girl {
+    background-image: url(../images/char-princess-girl.png);
+}
+
+.option-player {
+    margin: 5rem;
+    padding: 2rem;
+    border: solid Blue 4px;
+    border-radius: 20px;
+}
+
+.option-player input {
+    position: absolute;
+    z-index: 999;
+    margin: 10px 0 10px 10px;
+    border-radius: 20px;
+}
+
+.option-player input:active+.player {
+    opacity: .9;
+}
+
+.option-player input:checked+.player {
+    -webkit-filter: none;
+    -moz-filter: none;
+    filter: none;
+}
+
+.game {
+    margin: 0 4rem;
+}
+
+.player {
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 100px;
+    height: 70px;
+    margin: -25px 0 0 25px;
+    -webkit-transition: all 100ms ease-in;
+    -moz-transition: all 100ms ease-in;
+    transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+    -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+    filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+
+.player:hover {
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+    -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+    filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Modal */
 
 .modal {
     display: none;
@@ -83,10 +165,19 @@ body {
 }
 
 .button-restart {
+    display: block;
     border-radius: 20px;
     background-color: #99d3d3;
     height: 40px;
     width: 8rem;
     font-size: 1.2rem;
     margin: 0 0 0 10px;
+}
+
+.button-restart:hover,
+.button-restart:focus {
+    color: blue;
+    text-decoration: none;
+    cursor: pointer;
+    outline: #aaa;
 }

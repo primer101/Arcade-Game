@@ -22,12 +22,12 @@ var Engine = (function (global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
-        lastTime;
-    req = null;
+        lastTime,
+        req = null;
 
     canvas.width = 505;
     canvas.height = 606;
-    doc.body.appendChild(canvas);
+    doc.querySelector('.grid').appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -55,8 +55,9 @@ var Engine = (function (global) {
 
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
+         * When the game is over the loop is stop. (player.live < 0)
          */
-        if (player.lives > 0) {
+        if (player.lives >= 0) {
             req = win.requestAnimationFrame(main);
         }
 
@@ -68,20 +69,20 @@ var Engine = (function (global) {
      */
     function init() {
         reset();
-        // Close modal event
-        doc.querySelector('.close').addEventListener('click', () => closeModal());
-        doc.querySelector('#play-again').addEventListener('click', () => playAgain());
-        doc.querySelector('.button-restart').addEventListener('click', () => playAgain());
+        // Event Listeners
+        initEventListener(playAgain);
         lastTime = Date.now();
         main();
-    }
+    };
 
     const playAgain = () => {
         closeModal();
+        // Initial status
         reset();
         lastTime = Date.now();
         main();
-    }
+    };
+
 
     /* This function is called by main (our game loop) and itself calls all
      * of the functions which may need to update entity's data. Based on how
@@ -188,18 +189,16 @@ var Engine = (function (global) {
         player.render();
     }
 
-    /* This function does nothing but it could have been a good place to
-     * handle game reset states - maybe a new game menu or a game over screen
-     * those sorts of things. It's only called once by the init() method.
-     */
+    // Handles game reset states.
     function reset() {
-        lastTime = Date.now();
         player.lives = 3;
-        const hearts = doc.querySelectorAll('.heart');
+        // Show all the hearts (lives)
         hearts.forEach(item => item.style.visibility = 'visible')
         score = 0;
+        // Initial position of the player
         player.col = 2;
         player.row = 5;
+        // New enemies
         allEnemies = makeEnemies();
     }
 
@@ -213,7 +212,10 @@ var Engine = (function (global) {
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/char-cat-girl.png'
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png'
     ]);
     Resources.onReady(init);
 

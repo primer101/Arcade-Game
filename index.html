@@ -1,22 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Effective JavaScript: Frogger</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div class="score-board">
-        <div class="score-text">0</div>
-        <button class="button-restart">Restart</button>
-        <div class="hearts-box">
-            <img id="heart-one" class="heart" src="images/Heart.png" alt="Heart">
-            <img id="heart-two" class="heart" src="images/Heart.png" alt="Heart">
-            <img id="heart-three" class="heart" src="images/Heart.png" alt="Heart">
+    <main class="main">
+        <form class="option-player">
+            <h3>Please choose your favorite player</h3>
+            <hr>
+            <input id="char-boy" type="radio" name="player" value="char-boy">
+            <label class="player char-boy" for="char-boy"></label>
+
+            <br>
+            <input id="char-cat-girl" type="radio" name="player" value="char-cat-girl" checked>
+            <label class="player char-cat-girl" for="char-cat-girl"></label>
+
+            <br>
+            <input id="char-horn-girl" type="radio" name="player" value="char-horn-girl">
+            <label class="player char-horn-girl" for="char-horn-girl"></label>
+
+            <br>
+            <input id="char-pink-girl" type="radio" name="player" value="char-pink-girl">
+            <label class="player char-pink-girl" for="char-pink-girl"></label>
+
+            <br>
+            <input id="char-princess-girl" type="radio" name="player" value="char-princess-girl">
+            <label class="player char-princess-girl" for="char-princess-girl"></label>
+
+        </form>
+
+        <div class="game">
+            <div class="score-board">
+                <div class="score-text">0</div>
+                <button class="button-restart">Restart</button>
+                <div class="hearts-box">
+                    <img id="heart-one" class="heart" src="images/Heart.png" alt="Heart">
+                    <img id="heart-two" class="heart" src="images/Heart.png" alt="Heart">
+                    <img id="heart-three" class="heart" src="images/Heart.png" alt="Heart">
+                </div>
+            </div>
+
+            <div class="grid"></div>
+
         </div>
-    </div>
+    </main>
 
     <!-- The Modal -->
     <div id="myModal" class="modal">

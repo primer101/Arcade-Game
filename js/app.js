@@ -1,9 +1,13 @@
+/* Initialization */
+
 // Delta X Delta Y
 const rowHeight = 83;
 const colWidth = 101;
 const gridWidth = 505;
 
 var score;
+
+// Array of Enemies (bugs)
 var allEnemies;
 
 // Modal
@@ -13,9 +17,23 @@ const modalDialog = document.getElementById('myModal');
 const scoreElement = document.querySelector('.score-text')
 
 // Heart elements
-const heartOne = document.querySelector('#heart-one');
-const heartTwo = document.querySelector('#heart-two');
-const heartThree = document.querySelector('#heart-three');
+const hearts = [
+    document.querySelector('#heart-one'),
+    document.querySelector('#heart-two'),
+    document.querySelector('#heart-three')
+];
+
+var win = new Audio('sounds/320672__rhodesmas__win-01.mp3');
+var lost = new Audio('sounds/162465__kastenfrosch__lostitem.mp3');
+var bounds = new Audio('sounds/28223__herbertboland__clap10.mp3');
+
+function initEventListener(playAgain) {
+    document.querySelector('.close').addEventListener('click', () => closeModal());
+    document.querySelector('#play-again').addEventListener('click', () => playAgain());
+    document.querySelector('.button-restart').addEventListener('click', () => playAgain());
+    document.querySelector('.option-player').addEventListener('click', () => changePlayer());
+}
+
 
 // Enemies our player must avoid
 // Parameter: row - it is the row for the bug, 1..3
@@ -33,7 +51,7 @@ var Enemy = function (row = 1) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function (dt) {
-    this.x += dt * 200 * this.speed;
+    this.x += dt * 300 * this.speed;
 
     // Loop the bug again when it is off the grid
     if (this.x > gridWidth) {
@@ -70,6 +88,7 @@ class Player {
             score += 10;
             this.col = 2;
             this.row = 5;
+            win.play();
         }
     };
 
@@ -82,36 +101,43 @@ class Player {
     handleInput(key) {
         switch (key) {
             case 'left':
-                if (this.col > 0) {
+                if (this.col == 0) {
+                    bounds.play();
+                } else {
                     this.col -= 1
                 }
                 break;
             case 'right':
-                if (this.col < 4) {
+                if (this.col == 4) {
+                    bounds.play();
+                } else {
                     this.col += 1;
                 }
                 break;
             case 'up':
-                if (this.row > 0) {
-                    this.row -= 1;
-                }
+                this.row -= 1;
                 break;
             case 'down':
-                if (this.row < 5)
+                if (this.row == 5) {
+                    bounds.play();
+                } else {
                     this.row += 1;
+                }
                 break;
         }
     };
 
     lostLive() {
-        this.col = 2;
-        this.row = 5;
         this.lives -= 1;
-        removeHeart();
-        if (this.lives == 0) {
+        lost.play();
+        if (this.lives < 0) {
             // Game Over
             showGameOver();
+            return;
         }
+        this.col = 2;
+        this.row = 5;
+        removeHeart();
     };
 };
 
@@ -131,18 +157,21 @@ class Player {
 //     }
 // });
 
-//remove a heart from the scoreboard
+// Remove a heart from the scoreboard
 const removeHeart = () => {
-    if (player.lives === 2) {
-        heartOne.style.visibility = 'hidden';
-    } else if (player.lives === 1) {
-        heartTwo.style.visibility = 'hidden';
-    } else if (player.lives === 0) {
-        heartThree.style.visibility = 'hidden';
-    }
+    // 3 initial amount of hearts (lives)
+    hearts[3 - player.lives - 1].style.visibility = 'hidden';
 }
 
-const updateScore = () => scoreElement.textContent = score;
+// Update the score
+const updateScore = () => scoreElement.textContent = `${score}`;
+
+const changePlayer = () => {
+    const playerName = document.querySelector('input[name="player"]:checked').value;
+    player.sprite = `images/${playerName}.png`;
+    document.querySelector('.button-restart').focus();
+}
+
 
 const showGameOver = () => {
     // Get the move span
