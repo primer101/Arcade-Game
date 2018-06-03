@@ -2,7 +2,7 @@
 
 A arcade game  made with vanilla JavaScript. This is a project from Front-End Web Developer Nanodegree Program of Udacity and part of the scholarship Grow With Google.
 
-![Game](https://github.com/primer101/Arcade-Game/raw/master/img-src/arcade game.png)
+![Game](https://github.com/primer101/Arcade-Game/raw/master/img-src/arcadegame.png)
 
 ### Features
 
@@ -28,7 +28,7 @@ Tested in mobile but it is no responsive and only works with a physical keyboard
 
 Several options to get up and running:
 
-- Clone the repo: `git clone https://github.com/goldfire/howler.js.git`
+- Clone the repo: `git clone https://github.com/primer101/Arcade-Game.git`
 - Live Demo in [Arcade Game](http://ldaudinot.atwebpages.com/arcade)
 
 ## Instructions
@@ -55,7 +55,7 @@ This game uses these sounds from [Freedsound]( http://freesound.org):
 
 [Clap10.wav](https://freesound.org/people/HerbertBoland/sounds/28223/#) , by [HerbertBoland](https://freesound.org/people/HerbertBoland/)
 
-Nanodegree" is a registered trademark of Udacity. © 2011–2018 [Udacity, Inc.](https://www.udacity.com/) 
+Nanodegree" is a registered trademark of Udacity. © 2011–2018 [Udacity, Inc.](https://www.udacity.com/)
 
 Copyright (c) 2018 [Leonardo Daudinot](https://www.linkedin.com/in/leonardodaudinot/) and [Udacity, Inc](https://www.udacity.com/)
 
