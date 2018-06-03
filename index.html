@@ -8,16 +8,28 @@
 </head>
 
 <body>
-    <!-- TODO: Paragraph to debug
-    <p id="col"></p>
-    <p id="player"></p> -->
-
     <div class="score-board">
         <div class="score-text">0</div>
+        <button class="button-restart">Restart</button>
         <div class="hearts-box">
             <img id="heart-one" class="heart" src="images/Heart.png" alt="Heart">
             <img id="heart-two" class="heart" src="images/Heart.png" alt="Heart">
             <img id="heart-three" class="heart" src="images/Heart.png" alt="Heart">
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>✨ Game Over 🎉</h3>
+            <p>
+                You score:
+                <span id="final-score"> </span>
+            </p>
+            <button id="play-again">
+                Play again?
+            </button>
         </div>
     </div>
 

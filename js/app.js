@@ -3,7 +3,11 @@ const rowHeight = 83;
 const colWidth = 101;
 const gridWidth = 505;
 
-let score = 0;
+var score;
+var allEnemies;
+
+// Modal
+const modalDialog = document.getElementById('myModal');
 
 // Score element
 const scoreElement = document.querySelector('.score-text')
@@ -43,14 +47,13 @@ Enemy.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
+// Player class
 // This class requires an update(), render() and
 // a handleInput() method.
-
 class Player {
     constructor() {
-        this.col = 2;
-        this.row = 5;
+        this.col = 0;
+        this.row = 0;
         this.x = 0;
         this.y = 0;
         this.sprite = 'images/char-cat-girl.png';
@@ -64,7 +67,7 @@ class Player {
         this.y = rowHeight * this.row - 10;
         if (this.row == 0) {
             // WATER!!
-            score += 20;
+            score += 10;
             this.col = 2;
             this.row = 5;
         }
@@ -105,6 +108,10 @@ class Player {
         this.row = 5;
         this.lives -= 1;
         removeHeart();
+        if (this.lives == 0) {
+            // Game Over
+            showGameOver();
+        }
     };
 };
 
@@ -137,16 +144,29 @@ const removeHeart = () => {
 
 const updateScore = () => scoreElement.textContent = score;
 
+const showGameOver = () => {
+    // Get the move span
+    const movesSpan = document.getElementById('final-score');
+    movesSpan.textContent = `${score}`;
+
+    let modal = document.getElementById('myModal');
+    modal.style.display = 'block';
+}
+
+const closeModal = () => modalDialog.style.display = 'none';
+
 var player = new Player();
 
-var allEnemies = [
-    new Enemy(1),
-    new Enemy(1),
-    new Enemy(2),
-    new Enemy(3),
-    new Enemy(2),
-    new Enemy(3)
-];
+function makeEnemies() {
+    return [
+        new Enemy(1),
+        new Enemy(1),
+        new Enemy(2),
+        new Enemy(3),
+        new Enemy(2),
+        new Enemy(3)
+    ]
+};
 
 
 // This listens for key presses and sends the keys to your

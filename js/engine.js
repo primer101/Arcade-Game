@@ -56,7 +56,10 @@ var Engine = (function (global) {
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
-        req = win.requestAnimationFrame(main);
+        if (player.lives > 0) {
+            req = win.requestAnimationFrame(main);
+        }
+
     }
 
     /* This function does some initial setup that should only occur once,
@@ -64,6 +67,17 @@ var Engine = (function (global) {
      * game loop.
      */
     function init() {
+        reset();
+        // Close modal event
+        doc.querySelector('.close').addEventListener('click', () => closeModal());
+        doc.querySelector('#play-again').addEventListener('click', () => playAgain());
+        doc.querySelector('.button-restart').addEventListener('click', () => playAgain());
+        lastTime = Date.now();
+        main();
+    }
+
+    const playAgain = () => {
+        closeModal();
         reset();
         lastTime = Date.now();
         main();
@@ -179,7 +193,14 @@ var Engine = (function (global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        lastTime = Date.now();
+        player.lives = 3;
+        const hearts = doc.querySelectorAll('.heart');
+        hearts.forEach(item => item.style.visibility = 'visible')
+        score = 0;
+        player.col = 2;
+        player.row = 5;
+        allEnemies = makeEnemies();
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -201,4 +222,5 @@ var Engine = (function (global) {
      * from within their app.js files.
      */
     global.ctx = ctx;
+    global.req = req;
 })(this);
