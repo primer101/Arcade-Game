@@ -6,7 +6,7 @@ A arcade game  made with vanilla JavaScript. This is a project from Front-End We
 
 ### Features
 
-- A score the increments in 10s.
+- A score that increments in 10s.
 - 3 Lives.
 - HTML5 Audio effects.
 - A button to restart the game
