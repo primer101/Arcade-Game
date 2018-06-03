@@ -1,3 +1,29 @@
 body {
     text-align: center;
 }
+
+.score-board {
+    display: flex;
+    border: solid Blue 4px;
+    border-radius: 20px;
+    height: 60px;
+    width: 505px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 30px auto -40px auto;
+}
+
+.score-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 0px 20px;
+}
+
+.hearts-box {
+    width: 20%;
+}
+
+.heart {
+    height: 25%;
+    width: 25%;
+}

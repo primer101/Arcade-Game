@@ -23,6 +23,7 @@ var Engine = (function (global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
+    req = null;
 
     canvas.width = 505;
     canvas.height = 606;
@@ -55,7 +56,7 @@ var Engine = (function (global) {
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
-        win.requestAnimationFrame(main);
+        req = win.requestAnimationFrame(main);
     }
 
     /* This function does some initial setup that should only occur once,
@@ -88,13 +89,15 @@ var Engine = (function (global) {
             let result = false;
             for (let index = 0; index < allEnemies.length; index++) {
                 const element = allEnemies[index];
-                if (element.col == player.col && element.row == player.row) {
+                if (element.x + 83 >= player.x && element.x - 83 <= player.x && element.y == player.y - 10) {
                     result = true;
                     break;
                 }
             }
             return result;
         }
+
+        updateScore();
     }
 
     /* This is called by the update function and loops through all of the
